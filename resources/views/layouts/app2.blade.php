@@ -58,24 +58,39 @@
                             <i class="fa fa-tachometer" aria-hidden="true"></i> <span style="padding-left: 10px"> Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Route::currentRouteName()=='categories.index'?'open':'' }} {{ Route::currentRouteName()=='sub_index'?'open':'' }} {{ Route::currentRouteName()=='category.create'?'open':'' }}">
                         <a href="javascript:void(0)">
                             <i class="fa fa-diamond" aria-hidden="true"></i><span style="padding-left: 10px"> Category</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="{{ route('categories.index') }}">Primary Categories</a></li>
-                            <li><a href="{{ route('sub_index') }}">Sub Categories</a></li>
-                            <li><a href="{{ route('category.create') }}">Add New</a></li>
+                        <ul class="sub-menu" style="@if(Route::currentRouteName()=='categories.index' ) 
+                                display: block;
+                            @elseif(Route::currentRouteName()=='sub_index')
+                                display: block;
+                            @elseif(Route::currentRouteName()=='category.create')
+                                display: block;
+                            @else
+                                display: none;
+                         @endif">
+                            <li class="animation {{ Route::currentRouteName()=='categories.index'?'active-page':'' }}"><a href="{{ route('categories.index') }}">Primary Categories</a></li>
+                            <li class="animation {{ Route::currentRouteName()=='sub_index'?'active-page':'' }}"><a href="{{ route('sub_index') }}">Sub Categories</a></li>
+                            <li class="animation {{ Route::currentRouteName()=='category.create'?'active-page':'' }}"><a href="{{ route('category.create') }}">Add New</a></li>
 
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{ Route::currentRouteName()=='tag.index'?'open':'' }} {{ Route::currentRouteName()=='tag.create'?'open':'' }}">
                         <a href="javascript:void(0)">
                            <i class="fa fa-tags" aria-hidden="true"></i><span style="padding-left: 10px"> Tag</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="{{ route('tag.index') }}">Tags</a></li>
-                            <li><a href="{{ route('tag.create') }}">Add New</a></li>
+                        <ul class="sub-menu" style="@if(Route::currentRouteName()=='tag.index')
+                                display: block;
+                            @elseif(Route::currentRouteName()=='tag.create')
+                                display: block;
+                            @else
+                                display: none;
+                            @endif
+                        ">
+                            <li class="animation"><a href="{{ route('tag.index') }}">Tags</a></li>
+                            <li class="animation"><a href="{{ route('tag.create') }}">Add New</a></li>
                         </ul>
                     </li>
                     <li>
